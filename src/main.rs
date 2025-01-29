@@ -1,5 +1,10 @@
+const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;
 fn main() {
-    // Welcome to Rust Language Book
-    // run git branch to checkout all the lessons
-    println!("Hello Rust 🦀");
+    let mut x = 5;
+    println!("The value of x is : {x}");
+
+    x = 6;
+    println!("The value of x is : {x}");
+
+    println!("Global Constant :{THREE_HOURS_IN_SECONDS}")
 }
