@@ -11,6 +11,8 @@ fn main() {
     let x = 2.0; // f64
     let y: f32 = 3.0; // f32
 
+    println!("{x}, {y}");
+
     // Numeric operations
 
     // addition
@@ -28,4 +30,12 @@ fn main() {
 
     // remainder
     let remainder = 42 % 5;
+
+    println!("{sum}, {difference}, {product}, {product}, {quotient}, {truncated}, {remainder}");
+
+    // Booleans
+    let t = true;
+    let f: bool = false; // with explicit type annotation
+
+    println!("{t},{f}");
 }
