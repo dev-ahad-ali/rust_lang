@@ -1,3 +1,5 @@
+use std::io;
+
 fn main() {
     // Two subsets of data types
     // 1. Scalar
@@ -57,5 +59,28 @@ fn main() {
     let five_hundred = tup.0;
     let float_num = tup.1;
     let one = tup.2;
-    println!("{five_hundred},{float_num},{one}")
+    println!("{five_hundred},{float_num},{one}");
+
+    // array
+
+    // note : arrays is Rust are fixed length
+    let a = [1, 2, 3, 5];
+    let x: [i32; 3] = [1, 2, 3]; // with value type and length annotations
+    let y = [4; 3]; // this is same as let y = [4,4,4];
+
+    println!("{:?}", (a, x, y));
+
+    println!("Please enter and index number");
+
+    let mut index = String::new();
+
+    io::stdin()
+        .read_line(&mut index)
+        .expect("Failed to read line");
+
+    let index: usize = index.trim().parse().expect("Index entered is not a number");
+
+    let element = a[index];
+
+    println!("The value on the element on index : {index} is : {element}");
 }
