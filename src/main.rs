@@ -47,4 +47,15 @@ fn main() {
     println!("{c},{z},{heart_eyed_cat_emoji}");
 
     // ---- Compound types : tuple, array
+
+    // tuples
+    let tup: (i32, f64, u8) = (500, 52.7, 1);
+
+    let (x, y, z) = tup;
+    println!("{x}, {y}, {z}");
+
+    let five_hundred = tup.0;
+    let float_num = tup.1;
+    let one = tup.2;
+    println!("{five_hundred},{float_num},{one}")
 }
