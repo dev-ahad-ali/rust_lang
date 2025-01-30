@@ -38,4 +38,13 @@ fn main() {
     let f: bool = false; // with explicit type annotation
 
     println!("{t},{f}");
+
+    // character type
+    let c = 'z';
+    let z: char = 'ℤ'; // with explicit type annotation
+    let heart_eyed_cat_emoji = '😻';
+
+    println!("{c},{z},{heart_eyed_cat_emoji}");
+
+    // ---- Compound types : tuple, array
 }
