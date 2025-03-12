@@ -6,6 +6,15 @@ fn main() {
         sign_in_count: u64,
     }
 
+    // more details on owner ship of struct later chapters for using reference types such &str.
+
+    // struct User2 {
+    //     active: bool,
+    //     username: &str,
+    //     email: &str,
+    //     sign_in_count: u64,
+    // }
+
     let mut user1 = User {
         active: true,
         email: String::from("some@example.com"),
