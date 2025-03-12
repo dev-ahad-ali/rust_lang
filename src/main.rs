@@ -4,17 +4,27 @@ struct Rectangle {
     width: u32,
     height: u32,
 }
-fn main() {
-    let scale = 2;
-    let rec1 = Rectangle {
-        width: dbg!(30 * scale),
-        height: 50,
-    };
-    dbg!(&rec1);
-    println!("rec1 is {rec1:#?}");
-    println!("The area of the rectangle is {} square pixels", area(&rec1))
+
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
 }
 
-fn area(rectangle: &Rectangle) -> u32 {
-    rectangle.width * rectangle.height
+impl Rectangle {
+    fn width(&self) -> bool {
+        self.width > 0
+    }
+}
+fn main() {
+    let rec1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    if rec1.width() {
+        println!("The rectangle has nonzero width, it is {}", rec1.width);
+    }
+
+    println!("The area of the rectangle is {} square pixels", rec1.area())
 }
