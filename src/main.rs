@@ -1,5 +1,9 @@
 fn main() {
-    // Welcome to Rust Language Book
-    // run git branch to checkout all the lessons
-    println!("Hello Rust 🦀");
+    let config_max = Some(3u8);
+
+    if let Some(max) = config_max {
+        println!("The maximum is configured to be {max}");
+    } else {
+        println!("Nothing matched");
+    }
 }
