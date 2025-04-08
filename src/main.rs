@@ -1,5 +1,10 @@
+use rust_lang_book::{authenticate, database::models::Credentials};
+
 fn main() {
-    // Welcome to Rust Language Book
-    // run git branch to checkout all the lessons
-    println!("Hello Rust 🦀");
+    let cred = Credentials {
+        username: String::from("rustacean"),
+        password: String::from("admin123"),
+    };
+
+    authenticate(cred);
 }
