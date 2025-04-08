@@ -20,12 +20,14 @@ pub mod auth_utils {
         pub username: String,
         pub password: String,
     }
-    fn login(cred: Credentials) {
+    pub fn login(cred: Credentials) {
         // login
         crate::database::get_user();
     }
 }
 
 pub fn authenticate(cred: auth_utils::Credentials) {
-    if let crate::database::models::Status::Connected = database::connect_to_database() {}
+    if let crate::database::models::Status::Connected = database::connect_to_database() {
+        auth_utils::login(cred);
+    }
 }
