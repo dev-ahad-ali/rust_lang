@@ -22,6 +22,11 @@ fn main() {
             Err(_) => continue,
         };
 
+        if !(1..=100).contains(&guess) {
+            println!("The secret number will be between 1 to 100");
+            continue;
+        };
+
         println!("You guessed : {}", guess);
 
         match guess.cmp(&secret_number) {
