@@ -1,4 +1,4 @@
-use std::fmt::Display;
+use std::fmt::{Debug, Display};
 
 pub trait Summary {
     fn summarize_author(&self) -> String;
@@ -21,7 +21,11 @@ pub struct NewsArticle {
 // }
 
 // default implementation for traits
-// impl Summary for NewsArticle {}
+impl Summary for NewsArticle {
+    fn summarize_author(&self) -> String {
+        format!("@{}", self.author)
+    }
+}
 
 pub struct Tweet {
     pub username: String,
@@ -65,3 +69,39 @@ pub fn notify(item: &impl Summary) {
 } */
 
 /* pub fn notify<T: Summary + Display>(item: &T) {} */
+
+// clearer trait bounds with 'where' clauses
+
+// unclear
+/*  fn some_function<T: Display + Clone, U: Clone + Debug>(t: &T, u: &U) -> i32 {} */
+
+pub fn some_function<T, U>(t: T, u: U) -> i32
+where
+    T: Display + Clone,
+    U: Clone + Debug,
+{
+    // --- snip ---
+}
+
+// return types that impl traits
+
+// this is no allowed right now will discuss in the future
+pub fn returns_summarizable(switch: bool) -> impl Summary {
+    if switch {
+        NewsArticle {
+            headline: String::from("Penguins win the Stanley Cup Championship!"),
+            location: String::from("Pittsburgh, PA, USA"),
+            author: String::from("Iceburgh"),
+            content: String::from(
+                "The Pittsburgh Penguins once again are the best hockey team in the NHL.",
+            ),
+        }
+    } else {
+        Tweet {
+            username: String::from("horse_ebooks"),
+            content: String::from("of course, as you probably already know, people"),
+            reply: false,
+            retweet: false,
+        }
+    }
+}
