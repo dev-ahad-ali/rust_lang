@@ -1,4 +1,7 @@
 #[allow(unused)]
+struct ImportantExpert<'a> {
+    part: &'a str,
+}
 fn main() {
     let r;
     {
@@ -15,6 +18,12 @@ fn main() {
     }
 
     println!("The longest string is {result}");
+
+    let novel = String::from("Call me ismael, Some years ago ...");
+    let first_sentence = novel.split(".").next().unwrap();
+    let i = ImportantExpert {
+        part: first_sentence,
+    };
 }
 
 fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
