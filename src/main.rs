@@ -24,6 +24,9 @@ fn main() {
     let i = ImportantExpert {
         part: first_sentence,
     };
+
+    // static lifetime -> which lives for the entire duration of the program
+    let s: &'static str = "I have a static lifetime";
 }
 
 fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
