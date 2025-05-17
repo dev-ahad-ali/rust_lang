@@ -27,6 +27,28 @@ impl Rectangle {
     }
 }
 
+pub fn add_two(a: usize) -> usize {
+    a + 2
+}
+
+pub fn greeting(name: &str) -> String {
+    format!("Hello, {name}")
+}
+
+pub struct Guess {
+    value: i32,
+}
+
+impl Guess {
+    pub fn new(value: i32) -> Guess {
+        if value < 1 || value > 100 {
+            panic!("Guess value should be between 1 to 100, got value {value}")
+        }
+
+        Guess { value }
+    }
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
@@ -57,5 +79,26 @@ mod test {
             height: 1,
         };
         assert!(smaller.can_hold(&larger));
+    }
+
+    #[test]
+    fn it_adds_two() {
+        let result = add_two(2);
+        assert_eq!(result, 4);
+    }
+
+    #[test]
+    fn greeting_with_name() {
+        let result = greeting("Carol");
+        assert!(
+            result.contains("Carol"),
+            "Greeting did not contain name, value was {result}"
+        );
+    }
+
+    #[test]
+    #[should_panic(expected = "less then or equal to 100")]
+    fn greater_then_100() {
+        Guess::new(200);
     }
 }
