@@ -16,6 +16,9 @@ mod tests {
     }
 } */
 
+pub fn add(left: usize, right: usize) -> usize {
+    left + right
+}
 struct Rectangle {
     width: u32,
     height: u32,
@@ -100,5 +103,15 @@ mod test {
     #[should_panic(expected = "less then or equal to 100")]
     fn greater_then_100() {
         Guess::new(200);
+    }
+
+    #[test]
+    fn it_works() -> Result<(), String> {
+        let result = add(2, 2);
+        if result == 4 {
+            Ok(())
+        } else {
+            Err(String::from("two plush two doesn't equal four"))
+        }
     }
 }
