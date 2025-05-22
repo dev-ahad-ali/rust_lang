@@ -1,3 +1,6 @@
+use std::thread;
+
+#[allow(unused)]
 #[derive(Debug, PartialEq, Copy, Clone)]
 enum ShirtColor {
     Red,
@@ -50,4 +53,77 @@ fn main() {
         "The user with preference : {:?} gets : {:?}",
         user_pref2, giveaway2
     );
+
+    // types for closure
+    let closure_type = |x| x;
+
+    let s = closure_type(String::from("Hello"));
+    // let l = closure_type(5); // error when trying with different type
+
+    // capturing reference or moving ownership
+
+    let list = vec![1, 2, 3];
+    println!("Before defining closure: {list:?}");
+
+    let only_borrows = || println!("From closure: {list:?}");
+
+    println!("Before calling closure : {list:?}");
+    only_borrows();
+    println!("After calling closure : {list:?}");
+
+    let mut list2 = vec![1, 2, 3];
+    println!("Before defining closure: {list2:?}");
+
+    let mut borrow_mutably = || list2.push(7);
+
+    borrow_mutably();
+    println!("After calling closure : {list2:?}");
+
+    // giving closure ownership
+    let list3 = vec![1, 2, 3];
+    thread::spawn(move || println!("From thread: {list3:?}"))
+        .join()
+        .unwrap();
+
+    // Fn traits and moving captured value out of the closure
+    impl<T> Option<T> {
+        pub fn unwrap_or_else<F>(self, f: F) -> T
+        where
+            F: FnOnce() -> T,
+        {
+            match self {
+                Some(x) => x,
+                None => f(),
+            }
+        }
+    }
+
+    #[derive(Debug)]
+    struct Rectangle {
+        width: u32,
+        height: u32,
+    }
+    fn main() {
+        let mut list = [
+            Rectangle {
+                width: 10,
+                height: 1,
+            },
+            Rectangle {
+                width: 3,
+                height: 5,
+            },
+            Rectangle {
+                width: 7,
+                height: 12,
+            },
+        ];
+
+        let mut num_sort_operations = 0;
+        list.sort_by_key(|r| {
+            num_sort_operations += 1;
+            r.width
+        });
+        println!("{list:#?}, sorted in {num_sort_operations} operations");
+    }
 }
