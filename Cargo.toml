@@ -1,4 +1,6 @@
-[package]
-name = "rust_lang_book"
-version = "0.1.0"
-edition = "2021"
+[workspace]
+resolver = "3"
+members = [ 
+    "adder",
+    "add_one",
+]
