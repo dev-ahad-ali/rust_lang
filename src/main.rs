@@ -1,3 +1,4 @@
+use std::mem::drop;
 use std::ops::Deref;
 
 use crate::List::{Cons, Nil};
@@ -52,6 +53,8 @@ fn main() {
     assert_eq!(5, *y3);
     hello(&m);
     println!("CustomSmartPointer created with : {:?}, {:?}", c, d);
+
+    drop(c); // manually dropping data
 }
 
 fn hello(name: &str) {
