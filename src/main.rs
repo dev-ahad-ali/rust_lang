@@ -1,4 +1,4 @@
-use std::time::Duration;
+use std::{future::Future, pin::Pin, time::Duration};
 
 use ::trpl;
 fn main() {
@@ -47,6 +47,28 @@ fn main() {
             }
         };
 
-        trpl::join3(tx_fut1, tx_fut, rx_fut).await;
+        let futures: Vec<Pin<Box<dyn Future<Output = ()>>>> =
+            vec![Box::pin(tx_fut1), Box::pin(rx_fut), Box::pin(tx_fut)];
+
+        trpl::join_all(futures).await;
+
+        // other with using pin
+        // let tx1_fut = pin!(async move {
+        //     // --snip--
+        // });
+        // let rx_fut = pin!(async {
+        //     // --snip--
+        // });
+        // let tx_fut = pin!(async move {
+        //     // --snip--
+        // });
+        // let futures: Vec<Pin<&mut dyn Future<Output = ()>>> = vec![tx1_fut, rx_fut, tx_fut];
+
+        let a = async { 1u32 };
+        let b = async { "Hello" };
+        let c = async { true };
+
+        let (a_result, b_result, c_result) = trpl::join!(a, b, c);
+        println!("{a_result}, {b_result}, {c_result}");
     })
 }
