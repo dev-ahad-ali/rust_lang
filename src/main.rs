@@ -1,5 +1,18 @@
+use std::{thread, time::Duration};
+
 fn main() {
-    // Welcome to Rust Language Book
-    // run git branch to checkout all the lessons
-    println!("Hello Rust 🦀");
+    let (tx, mut rx) = trpl::channel();
+
+    thread::spawn(move || {
+        for i in 1..11 {
+            tx.send(i).unwrap();
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
+
+    trpl::run(async {
+        while let Some(message) = rx.recv().await {
+            println!("{message}");
+        }
+    });
 }
