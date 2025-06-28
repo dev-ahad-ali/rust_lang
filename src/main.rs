@@ -1,5 +1,36 @@
+use rust_lang_book::{Button, Draw, Screen};
 fn main() {
-    // Welcome to Rust Language Book
-    // run git branch to checkout all the lessons
-    println!("Hello Rust 🦀");
+    struct SelectBox {
+        width: u32,
+        height: u32,
+        options: Vec<String>,
+    }
+
+    impl Draw for SelectBox {
+        fn draw(&self) {
+            // code to actually draw a select box,
+        }
+    }
+
+    let screen = Screen {
+        components: vec![
+            Box::new(SelectBox {
+                width: 75,
+                height: 10,
+                options: vec![
+                    String::from("Yes"),
+                    String::from("Maybe"),
+                    String::from("No"),
+                ],
+            }),
+            Box::new(Button {
+                width: 50,
+                height: 10,
+                label: String::from("OK"),
+            }),
+            // Box::new(String::from("Hi")),
+        ],
+    };
+
+    screen.run();
 }
