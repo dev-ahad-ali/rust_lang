@@ -1,5 +1,3 @@
 fn main() {
-    // Welcome to Rust Language Book
-    // run git branch to checkout all the lessons
-    println!("Hello Rust 🦀");
+    // object oriented programming in rust.
 }
