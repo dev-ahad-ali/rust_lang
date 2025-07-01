@@ -30,4 +30,11 @@ fn main() {
     while let Ok(value) = rx.recv() {
         println!("{value}");
     }
+
+    // for loops
+    let v = vec!["a", "b", "c"];
+
+    for (index, value) in v.iter().enumerate() {
+        println!("{value} is at index : {index}")
+    }
 }
