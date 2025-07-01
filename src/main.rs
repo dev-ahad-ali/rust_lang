@@ -40,4 +40,22 @@ fn main() {
 
     // let patterns
     let (x, y, z) = (1, 2, 3);
+
+    // function patterns
+    let point = (3, 5);
+    print_coordinates(&point);
+
+    // If we have a refutable pattern where an irrefutable pattern is needed
+    let some_option_value: Option<i32> = None;
+    let Some(x) = some_option_value else {
+        return;
+    };
+
+    let always_match = 5 else {
+        return;
+    };
+}
+
+fn print_coordinates(&(x, y): &(i32, i32)) {
+    println!("Current Location : {x}, {y}");
 }
