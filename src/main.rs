@@ -27,4 +27,18 @@ fn main() {
         3 => println!("three"),
         _ => println!("anything"),
     }
+
+    // matching ranges of values only applicable for 'numeric' and 'char' types
+    let fo2 = 5;
+    match fo2 {
+        1..=5 => println!("one through five"),
+        _ => println!("something else"),
+    }
+
+    let fo_char = 'c';
+    match fo_char {
+        'a'..='j' => println!("early ASCII letter"),
+        'k'..='z' => println!("late ASCII letter"),
+        _ => println!("something else"),
+    }
 }
