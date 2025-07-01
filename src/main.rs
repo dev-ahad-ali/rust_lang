@@ -19,4 +19,12 @@ fn main() {
     }
 
     println!("at the end , x={x:?} and y={y}");
+
+    // multiple patterns
+    let fo1 = 1;
+    match fo1 {
+        1 | 2 => println!("one or two"),
+        3 => println!("three"),
+        _ => println!("anything"),
+    }
 }
