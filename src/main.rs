@@ -96,4 +96,7 @@ fn main() {
             println!("Change color to hue {h} saturation {s} value {v}");
         } // _ => (),
     }
+
+    // Destructuring structs and tuples
+    let ((feet, inches), Point { x, y }) = ((3, 10), Point { x: 3, y: -10 });
 }
