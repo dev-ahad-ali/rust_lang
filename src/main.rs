@@ -147,4 +147,41 @@ fn main() {
     match origin {
         Point3D { x, .. } => println!("x is : {x}"),
     }
+    match numbers {
+        (first, .., last) => {
+            println!("Some numbers: {first}, {last}");
+        }
+    }
+
+    // match guard
+    let num = Some(4);
+
+    match num {
+        Some(x) if x % 2 == 0 => println!("The number {x} is even"),
+        Some(x) => println!("The number {x} is odd"),
+        None => (),
+    }
+
+    let fo5 = 4;
+    let fo_bool = false;
+
+    match fo5 {
+        4 | 5 | 6 if fo_bool => println!("yes"),
+        _ => println!("no"),
+    }
+
+    // '@' at bindings
+    enum Text {
+        Hello { id: i32 },
+    }
+
+    let foo_msg = Text::Hello { id: 5 };
+
+    match foo_msg {
+        Text::Hello {
+            id: id_variable @ 3..=7,
+        } => println!("Found an id in range : {id_variable}"),
+        Text::Hello { id: 10..=12 } => println!("Found an id in another range "),
+        Text::Hello { id } => println!("Found some other id: {id}"),
+    }
 }
