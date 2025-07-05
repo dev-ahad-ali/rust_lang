@@ -1,5 +1,16 @@
 use std::slice;
 
+/*  SAFETY: Calling this from more than a single thread at a time is undefined
+behavior, so you *must* guarantee you only call it from a single thread at
+a time. */
+static mut COUNTER: u32 = 0;
+
+unsafe fn add_to_count(inc: u32) {
+    unsafe {
+        COUNTER += inc;
+    }
+}
+
 fn main() {
     // Dereferencing raw pointers
     let mut num = 5;
@@ -45,6 +56,14 @@ fn main() {
     #[unsafe(no_mangle)]
     pub extern "C" fn call_from_c() {
         println!("Just called a Rust function from C!");
+    }
+
+    // Accessing or modifying a mutable static/global variable
+
+    unsafe {
+        add_to_count(3);
+        // SAFETY: This is only called from a single thread in `main`.
+        println!("Counter: {}", *(&raw const COUNTER));
     }
 }
 
