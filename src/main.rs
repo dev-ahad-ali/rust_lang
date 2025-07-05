@@ -73,6 +73,9 @@ fn main() {
     unsafe impl Foo for u64 {
         // methods implementation go here
     }
+
+    // Accessing fields of Union
+    // Unions are primarily used to interface with unions in C code.
 }
 
 fn split_at_mut(values: &mut [i32], mid: usize) -> (&mut [i32], &mut [i32]) {
