@@ -65,6 +65,14 @@ fn main() {
         // SAFETY: This is only called from a single thread in `main`.
         println!("Counter: {}", *(&raw const COUNTER));
     }
+
+    // Implementing unsafe traits
+    unsafe trait Foo {
+        // methods go here
+    }
+    unsafe impl Foo for u64 {
+        // methods implementation go here
+    }
 }
 
 fn split_at_mut(values: &mut [i32], mid: usize) -> (&mut [i32], &mut [i32]) {
