@@ -1,5 +1,16 @@
 fn main() {
-    // Welcome to Rust Language Book
-    // run git branch to checkout all the lessons
-    println!("Hello Rust 🦀");
+    // Associated types
+    struct Counter {}
+    pub trait Iterator {
+        type Item;
+
+        fn next(&mut self) -> Option<Self::Item>;
+    }
+    impl Iterator for Counter {
+        type Item = u32;
+        fn next(&mut self) -> Option<Self::Item> {
+            // snip---
+            Some(32)
+        }
+    }
 }
