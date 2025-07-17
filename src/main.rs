@@ -104,4 +104,36 @@ fn main() {
 
     println!("A baby dog is called: {}", Dog::baby_name());
     println!("A baby dog is called: {}", <Dog as Animal>::baby_name());
+
+    // Super Traits
+    use ::std::fmt;
+
+    trait OutlinePrint: fmt::Display {
+        fn outline_print(&self) {
+            let output = self.to_string();
+            let len = output.len();
+
+            println!("{}", "*".repeat(len + 4));
+            println!("*{}*", " ".repeat(len + 2));
+            println!("* {output} *");
+            println!("*{}*", " ".repeat(len + 2));
+            println!("{}", "*".repeat(len + 4));
+        }
+    }
+
+    struct PointD {
+        x: i32,
+        y: i32,
+    }
+
+    impl fmt::Display for PointD {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+            write!(f, "({}, {})", self.x, self.y)
+        }
+    }
+
+    impl OutlinePrint for PointD {}
+
+    let p = PointD { x: 1, y: 3 };
+    p.outline_print();
 }
