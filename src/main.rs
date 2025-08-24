@@ -136,4 +136,6 @@ fn main() {
 
     let p = PointD { x: 1, y: 3 };
     p.outline_print();
+
+    //  using the new type pattern to implement external traits on external types
 }
