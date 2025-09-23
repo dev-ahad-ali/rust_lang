@@ -1,3 +1,5 @@
+use std::fmt;
+
 fn main() {
     // Associated types
     struct Counter {}
@@ -138,4 +140,15 @@ fn main() {
     p.outline_print();
 
     //  using the new type pattern to implement external traits on external types
+
+    struct Wrapper(Vec<String>);
+
+    impl fmt::Display for Wrapper {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+            write!(f, "[{}]", self.0.join(", "))
+        }
+    }
+
+    let w = Wrapper(vec![String::from("hello"), String::from("world")]);
+    println!("w = {w}");
 }
